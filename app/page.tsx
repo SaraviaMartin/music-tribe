@@ -181,7 +181,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-slate-800 mt-8 pt-8 text-center text-sm text-slate-400">
-            <p>© {new Date().getFullYear()} FestivalHub. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} FestivalHub. All rights reserved. Made with ❤️ by <Link href="https://github.com/SaraviaMartin" className="hover:text-white">Juan Martin</Link></p>
           </div>
         </div>
       </footer>
