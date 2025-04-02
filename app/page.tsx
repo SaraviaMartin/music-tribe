@@ -9,9 +9,9 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <header className="border-b">
         <div className="container flex items-center justify-between py-4">
-          <Link href="/" className="flex items-center gap-3 ml-4">
+          <Link href="/" className="flex items-center gap-2">
             <MusicIcon className="h-6 w-6" />
-            <span className="text-xl font-bold ml-2">FestivalHub</span>
+            <span className="text-xl font-bold">FestivalHub</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/festivals" className="text-sm font-medium hover:underline">
@@ -37,20 +37,18 @@ export default function Home() {
         </div>
       </header>
       <main className="flex-1">
-        <div className="w-full">
-          <HeroSection />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <section className="py-12">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-bold">Upcoming Festivals</h2>
-              <Link href="/festivals">
-                <Button variant="outline">View all</Button>
-              </Link>
-            </div>
-            <FeaturedFestivals />
-          </section>
-          <section className="bg-slate-50 py-16">
+        <HeroSection />
+        <section className="container py-12">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl font-bold">Upcoming Festivals</h2>
+            <Link href="/festivals">
+              <Button variant="outline">View all</Button>
+            </Link>
+          </div>
+          <FeaturedFestivals />
+        </section>
+        <section className="bg-slate-50 py-16">
+          <div className="container">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold mb-4">For Artists</h2>
@@ -99,11 +97,11 @@ export default function Home() {
                 />
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </main>
       <footer className="bg-slate-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
               <h3 className="font-bold mb-4">FestivalHub</h3>
