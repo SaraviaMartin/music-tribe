@@ -9,9 +9,9 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <header className="border-b">
         <div className="container flex items-center justify-between py-4">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-3 ml-4">
             <MusicIcon className="h-6 w-6" />
-            <span className="text-xl font-bold">FestivalHub</span>
+            <span className="text-xl font-bold ml-2">FestivalHub</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/festivals" className="text-sm font-medium hover:underline">
