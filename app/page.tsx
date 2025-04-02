@@ -21,6 +21,9 @@ export default function Home() {
               Artists
             </Link>
             <Link href="/about" className="text-sm font-medium hover:underline">
+              Pricing
+            </Link>
+            <Link href="/about" className="text-sm font-medium hover:underline">
               About
             </Link>
           </nav>
@@ -100,9 +103,9 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <footer className="bg-slate-900 text-white py-12">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <footer className="w-full bg-gray-900 text-white">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="font-bold mb-4">FestivalHub</h3>
               <p className="text-slate-400 text-sm">

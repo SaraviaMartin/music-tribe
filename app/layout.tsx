@@ -14,7 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="flex min-h-screen flex-col items-center">
+        <div className="w-full max-w-7xl">
+          {children}
+        </div>
+      </body>
     </html>
   )
 }
