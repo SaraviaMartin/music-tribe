@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { Providers } from './providers'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'FestivalHub - Find and Book Music Festivals',
+  description: 'Discover and book tickets to the best music festivals around the world. Connect with your favorite artists and never miss a beat.',
+  generator: 'Next.js',
 }
 
 export default function RootLayout({
@@ -13,11 +14,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="flex min-h-screen flex-col items-center">
-        <div className="w-full max-w-7xl">
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen antialiased">
+        <Providers>
           {children}
-        </div>
+        </Providers>
       </body>
     </html>
   )

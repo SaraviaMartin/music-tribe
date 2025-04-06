@@ -2,11 +2,22 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { SearchIcon } from "lucide-react"
-import { useSession, signIn, signOut } from "next-auth/react"
+import { SearchIcon, MapPinIcon } from "lucide-react"
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 export default function HeroSection() {
-  // const { data: session, status } = useSession()
+  const { data: session } = useSession()
+  const router = useRouter()
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      router.push(`/festivals?search=${encodeURIComponent(searchQuery)}`)
+    }
+  }
 
   return (
     <div className="relative w-full overflow-hidden bg-gradient-to-r from-purple-700 to-pink-600 text-white">
@@ -19,49 +30,41 @@ export default function HeroSection() {
             never miss a beat.
           </p>
           
-          {/* <div className="flex justify-center gap-4">
-            {status === 'loading' ? (
-              <div>Cargando...</div>
-            ) : session ? (
-              <>
-                <span className="text-white">Bienvenido, {session.user?.name}</span>
-                <Button onClick={() => signOut()} className="bg-white text-purple-700 hover:bg-white/90">
-                  Cerrar Sesión
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button onClick={() => signIn('github')} className="bg-white text-purple-700 hover:bg-white/90">
-                  Iniciar Sesión con GitHub
-                </Button>
-              </>
-            )}
-          </div> */}
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4 justify-center">
             <div className="relative flex-1 max-w-xl">
               <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
               <input
                 type="text"
                 placeholder="Search for festivals, artists, or locations..."
                 className="w-full h-12 pl-10 pr-4 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-purple-500"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <Button className="h-12 px-6 bg-white text-purple-700 hover:bg-white/90">Search</Button>
-          </div>
+            <Button type="submit" className="h-12 px-6 bg-white text-purple-700 hover:bg-white/90">Search</Button>
+          </form>
           
           <div className="flex flex-wrap gap-4 pt-2 justify-center">
-            <Link href="/festivals/category/rock">
+            <Link href="/festivals?category=rock">
               <Button className="border-white/30 hover:bg-white/10 hover:border-white/50">Rock</Button>
             </Link>
-            <Link href="/festivals/category/electronic">
+            <Link href="/festivals?category=electronic">
               <Button className="border-white/30 hover:bg-white/10 hover:border-white/50">Electronic</Button>
             </Link>
-            <Link href="/festivals/category/jazz">
+            <Link href="/festivals?category=jazz">
               <Button className="border-white/30 hover:bg-white/10 hover:border-white/50">Jazz</Button>
             </Link>
-            <Link href="/festivals/category/hip-hop">
+            <Link href="/festivals?category=hip-hop">
               <Button className="border-white/30 hover:bg-white/10 hover:border-white/50">Hip Hop</Button>
+            </Link>
+          </div>
+          
+          <div className="flex justify-center mt-4">
+            <Link href="/map">
+              <Button variant="outline" className="border-white/30 hover:bg-white/10 hover:border-white/50 flex items-center gap-2">
+                <MapPinIcon className="h-4 w-4" />
+                Find Festivals Near Me
+              </Button>
             </Link>
           </div>
         </div>
