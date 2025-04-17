@@ -44,24 +44,11 @@ export default function HeroSection() {
             <Button type="submit" className="h-12 px-6 bg-white text-purple-700 hover:bg-white/90">Search</Button>
           </form>
           
-          <div className="flex flex-wrap gap-4 pt-2 justify-center">
-            <Link href="/festivals?category=rock">
-              <Button className="border-white/30 hover:bg-white/10 hover:border-white/50">Rock</Button>
-            </Link>
-            <Link href="/festivals?category=electronic">
-              <Button className="border-white/30 hover:bg-white/10 hover:border-white/50">Electronic</Button>
-            </Link>
-            <Link href="/festivals?category=jazz">
-              <Button className="border-white/30 hover:bg-white/10 hover:border-white/50">Jazz</Button>
-            </Link>
-            <Link href="/festivals?category=hip-hop">
-              <Button className="border-white/30 hover:bg-white/10 hover:border-white/50">Hip Hop</Button>
-            </Link>
-          </div>
-          
           <div className="flex justify-center mt-4">
             <Link href="/map">
-              <Button variant="outline" className="border-white/30 hover:bg-white/10 hover:border-white/50 flex items-center gap-2">
+              <Button 
+                className="bg-white text-purple-700 hover:bg-white/90 hover:text-purple-800 font-medium px-6 py-2 rounded-md transition-colors duration-200 flex items-center gap-2"
+              >
                 <MapPinIcon className="h-4 w-4" />
                 Find Festivals Near Me
               </Button>

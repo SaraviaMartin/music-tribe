@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Providers } from './providers'
+import Header from '@/components/header'
 
 export const metadata: Metadata = {
   title: 'FestivalHub - Find and Book Music Festivals',
@@ -17,6 +18,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen antialiased">
         <Providers>
+          <Header />
           {children}
         </Providers>
       </body>

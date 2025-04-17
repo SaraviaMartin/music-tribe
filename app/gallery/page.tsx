@@ -8,7 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { SearchIcon, FilterIcon, CalendarIcon, MapPinIcon, HeartIcon, ShareIcon, XIcon } from "lucide-react"
-import Header from "@/components/header"
 import Footer from "@/components/footer"
 
 // Mock data for gallery images
@@ -170,12 +169,11 @@ export default function GalleryPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
       <main className="flex-1">
-        <div className="container py-8">
-          <h1 className="text-3xl font-bold mb-6">Festival Gallery</h1>
+        <div className="container mx-auto max-w-7xl py-8 px-4">
+          <h1 className="text-3xl font-bold mb-6 text-center">Festival Gallery</h1>
 
-          <div className="bg-white rounded-lg shadow-sm border p-4 mb-8">
+          <div className="bg-white rounded-lg shadow-sm border p-4 mb-8 max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div className="relative">
                 <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -227,8 +225,8 @@ export default function GalleryPage() {
             </div>
           </div>
 
-          <Tabs defaultValue="grid" className="mb-6">
-            <TabsList>
+          <Tabs defaultValue="grid" className="mb-6 max-w-6xl mx-auto">
+            <TabsList className="flex justify-center">
               <TabsTrigger value="grid">Grid View</TabsTrigger>
               <TabsTrigger value="masonry">Masonry View</TabsTrigger>
             </TabsList>

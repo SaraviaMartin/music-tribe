@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
 import { CalendarIcon, MapPinIcon, ClockIcon, UsersIcon, MusicIcon, InfoIcon, ShareIcon, HeartIcon } from "lucide-react"
+import { LocationButton } from "@/components/ui/location-button"
 
 // This would normally come from a database
 const getFestival = (id: string) => {
@@ -197,9 +198,10 @@ export default function FestivalDetailPage({ params }: { params: { id: string } 
                     </p>
                   </div>
                 </div>
-                <Button variant="outline" className="mt-2">
-                  View on Map
-                </Button>
+                <LocationButton 
+                  location={`${festival.venue}, ${festival.location}`}
+                  className="mt-4"
+                />
               </div>
             </TabsContent>
 

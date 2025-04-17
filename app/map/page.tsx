@@ -8,8 +8,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CalendarIcon, MapPinIcon, SearchIcon, FilterIcon, ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
-import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { LocationButton } from "@/components/ui/location-button"
 
 // Mock data for festivals with coordinates
 const festivals = [
@@ -162,12 +162,11 @@ export default function MapPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
       <main className="flex-1">
-        <div className="container py-8">
-          <h1 className="text-3xl font-bold mb-6">Find Festivals Near You</h1>
+        <div className="container mx-auto max-w-7xl py-8 px-4">
+          <h1 className="text-3xl font-bold mb-6 text-center">Find Festivals Near You</h1>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <div className="lg:col-span-1 space-y-6">
               <div className="bg-white rounded-lg shadow-sm border p-4">
                 <div className="space-y-4">
@@ -179,24 +178,6 @@ export default function MapPage() {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                  </div>
-                  <div>
-                    <Select value={category} onValueChange={setCategory}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Categories</SelectItem>
-                        <SelectItem value="rock">Rock</SelectItem>
-                        <SelectItem value="electronic">Electronic</SelectItem>
-                        <SelectItem value="jazz">Jazz</SelectItem>
-                        <SelectItem value="hip hop">Hip Hop</SelectItem>
-                        <SelectItem value="folk">Folk</SelectItem>
-                        <SelectItem value="indie">Indie</SelectItem>
-                        <SelectItem value="classical">Classical</SelectItem>
-                        <SelectItem value="world">World</SelectItem>
-                      </SelectContent>
-                    </Select>
                   </div>
                   <div className="flex items-center justify-between pt-2 border-t">
                     <div className="flex items-center gap-2 text-sm text-slate-600">
@@ -216,11 +197,10 @@ export default function MapPage() {
                           )
                         }
                       }}
-                      variant="outline"
-                      size="sm"
+                      className="bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-md transition-colors duration-200"
                     >
                       <MapPinIcon className="h-4 w-4 mr-2" />
-                      Use My Location
+                      Find Festivals Near Me
                     </Button>
                   </div>
                 </div>
@@ -266,7 +246,12 @@ export default function MapPage() {
                             </div>
                           )}
                         </div>
-                        <div className="mt-3">
+                        <div className="mt-3 space-y-2">
+                          <LocationButton 
+                            location={festival.location}
+                            size="sm"
+                            className="w-full"
+                          />
                           <Link href={`/festivals/${festival.id}`}>
                             <Button size="sm" className="w-full">
                               {festival.status === "On Sale" ? "Buy Tickets" : "View Details"}

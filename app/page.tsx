@@ -3,26 +3,26 @@ import { Button } from "@/components/ui/button"
 import { MusicIcon, TicketIcon, CalendarIcon } from "lucide-react"
 import FeaturedFestivals from "@/components/featured-festivals"
 import HeroSection from "@/components/hero-section"
-import Header from "@/components/header"
 import Footer from "@/components/footer"
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
       <main className="flex-1">
         <HeroSection />
-        <section className="container py-12">
-          <div className="flex items-center justify-between mb-8">
+        <section className="container py-12 mx-auto">
+          <div className="flex items-center justify-between mb-8 max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold">Upcoming Festivals</h2>
             <Link href="/festivals">
               <Button variant="outline">View all</Button>
             </Link>
           </div>
-          <FeaturedFestivals />
+          <div className="max-w-4xl mx-auto">
+            <FeaturedFestivals />
+          </div>
         </section>
         <section className="bg-slate-50 py-16">
-          <div className="container">
+          <div className="container max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold mb-4">For Artists</h2>

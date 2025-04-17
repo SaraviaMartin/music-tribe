@@ -21,7 +21,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { MusicIcon, MenuIcon, UserIcon, LogOutIcon, TicketIcon, CalendarIcon, LayoutDashboardIcon } from "lucide-react"
+import { MusicIcon, MenuIcon, UserIcon, LogOutIcon, TicketIcon, CalendarIcon, LayoutDashboardIcon, HomeIcon } from "lucide-react"
 
 export default function Header() {
   const { data: session, status } = useSession()
@@ -46,45 +46,51 @@ export default function Header() {
 
   return (
     <header className="border-b sticky top-0 z-50 bg-white">
-      <div className="container flex items-center justify-between py-4">
+      <div className="container flex items-center py-4">
         <Link href="/" className="flex items-center gap-2">
           <MusicIcon className="h-6 w-6" />
           <span className="text-xl font-bold">FestivalHub</span>
         </Link>
-        
-        <nav className="hidden md:flex items-center gap-6">
-          <Link 
-            href="/festivals" 
-            className={`text-sm font-medium ${isActive("/festivals") ? "text-purple-600" : "hover:text-purple-600"}`}
-          >
-            Festivals
-          </Link>
-          <Link 
-            href="/map" 
-            className={`text-sm font-medium ${isActive("/map") ? "text-purple-600" : "hover:text-purple-600"}`}
-          >
-            Map
-          </Link>
-          <Link 
-            href="/artists" 
-            className={`text-sm font-medium ${isActive("/artists") ? "text-purple-600" : "hover:text-purple-600"}`}
-          >
-            Artists
-          </Link>
-          <Link 
-            href="/gallery" 
-            className={`text-sm font-medium ${isActive("/gallery") ? "text-purple-600" : "hover:text-purple-600"}`}
-          >
-            Gallery
-          </Link>
-        </nav>
-        
+        <div className="flex-1"></div>
         <div className="flex items-center gap-4">
+          <nav className="hidden md:flex items-center gap-6">
+            <Link 
+              href="/" 
+              className={`text-sm font-medium ${isActive("/") ? "text-purple-600" : "hover:text-purple-600"}`}
+            >
+              Inicio
+            </Link>
+            <Link 
+              href="/festivals" 
+              className={`text-sm font-medium ${isActive("/festivals") ? "text-purple-600" : "hover:text-purple-600"}`}
+            >
+              Festivals
+            </Link>
+            <Link 
+              href="/map" 
+              className={`text-sm font-medium ${isActive("/map") ? "text-purple-600" : "hover:text-purple-600"}`}
+            >
+              Map
+            </Link>
+            <Link 
+              href="/artists" 
+              className={`text-sm font-medium ${isActive("/artists") ? "text-purple-600" : "hover:text-purple-600"}`}
+            >
+              Artists
+            </Link>
+            <Link 
+              href="/gallery" 
+              className={`text-sm font-medium ${isActive("/gallery") ? "text-purple-600" : "hover:text-purple-600"}`}
+            >
+              Gallery
+            </Link>
+          </nav>
+          
           {status === "loading" ? (
             <div className="h-9 w-20 bg-slate-100 animate-pulse rounded-md"></div>
           ) : session ? (
             <>
-              {session.user.role === "artist" && (
+              {session.user?.role === "artist" && (
                 <Link href="/artist/dashboard">
                   <Button variant="outline" size="sm" className="hidden md:flex">
                     <LayoutDashboardIcon className="h-4 w-4 mr-2" />
@@ -93,7 +99,7 @@ export default function Header() {
                 </Link>
               )}
               
-              {session.user.role === "promoter" && (
+              {session.user?.role === "promoter" && (
                 <Link href="/promoter/dashboard">
                   <Button variant="outline" size="sm" className="hidden md:flex">
                     <LayoutDashboardIcon className="h-4 w-4 mr-2" />
@@ -106,7 +112,7 @@ export default function Header() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="rounded-full">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src={session.user.image || ""} alt={session.user.name || "User"} />
+                      <AvatarImage src={session.user?.image || ""} alt={session.user?.name || "User"} />
                       <AvatarFallback>{userInitials}</AvatarFallback>
                     </Avatar>
                   </Button>
@@ -114,8 +120,8 @@ export default function Header() {
                 <DropdownMenuContent align="end">
                   <DropdownMenuLabel>
                     <div className="flex flex-col">
-                      <span>{session.user.name}</span>
-                      <span className="text-xs text-slate-500">{session.user.email}</span>
+                      <span>{session.user?.name}</span>
+                      <span className="text-xs text-slate-500">{session.user?.email}</span>
                     </div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
@@ -131,7 +137,7 @@ export default function Header() {
                       My Tickets
                     </Link>
                   </DropdownMenuItem>
-                  {session.user.role === "artist" && (
+                  {session.user?.role === "artist" && (
                     <DropdownMenuItem asChild>
                       <Link href="/artist/dashboard" className="cursor-pointer md:hidden">
                         <LayoutDashboardIcon className="h-4 w-4 mr-2" />
@@ -139,7 +145,7 @@ export default function Header() {
                       </Link>
                     </DropdownMenuItem>
                   )}
-                  {session.user.role === "promoter" && (
+                  {session.user?.role === "promoter" && (
                     <DropdownMenuItem asChild>
                       <Link href="/promoter/dashboard" className="cursor-pointer md:hidden">
                         <LayoutDashboardIcon className="h-4 w-4 mr-2" />
@@ -179,6 +185,10 @@ export default function Header() {
                 <SheetTitle>FestivalHub</SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-4 mt-6">
+                <Link href="/" onClick={closeMenu} className="flex items-center gap-2 py-2">
+                  <HomeIcon className="h-5 w-5" />
+                  Inicio
+                </Link>
                 <Link href="/festivals" onClick={closeMenu} className="flex items-center gap-2 py-2">
                   <CalendarIcon className="h-5 w-5" />
                   Festivals
@@ -228,13 +238,13 @@ export default function Header() {
                       <TicketIcon className="h-5 w-5" />
                       My Tickets
                     </Link>
-                    {session.user.role === "artist" && (
+                    {session.user?.role === "artist" && (
                       <Link href="/artist/dashboard" onClick={closeMenu} className="flex items-center gap-2 py-2">
                         <LayoutDashboardIcon className="h-5 w-5" />
                         Artist Dashboard
                       </Link>
                     )}
-                    {session.user.role === "promoter" && (
+                    {session.user?.role === "promoter" && (
                       <Link href="/promoter/dashboard" onClick={closeMenu} className="flex items-center gap-2 py-2">
                         <LayoutDashboardIcon className="h-5 w-5" />
                         Promoter Dashboard
