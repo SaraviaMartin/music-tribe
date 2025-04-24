@@ -49,7 +49,7 @@ export default function Header() {
       <div className="container flex items-center py-4">
         <Link href="/" className="flex items-center gap-2">
           <MusicIcon className="h-6 w-6" />
-          <span className="text-xl font-bold">FestivalHub</span>
+          <span className="text-xl font-bold">Music Tribe</span>
         </Link>
         <div className="flex-1"></div>
         <div className="flex items-center gap-4">
