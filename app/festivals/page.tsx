@@ -6,8 +6,25 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { CalendarIcon, MapPinIcon, TicketIcon, SearchIcon, FilterIcon } from "lucide-react"
 
-// Mock data for festivals
-const festivals = [
+import { prisma } from "@/lib/prisma"
+
+async function getFestivals() {
+  const festivals = await prisma.festival.findMany({
+    include: {
+      tickets: true,
+      organizer: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
+    },
+  })
+  return festivals
+}
+
+export default async function FestivalsPage() {
+  const festivals = await getFestivals()
   {
     id: 1,
     name: "Sonic Bloom",
