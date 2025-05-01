@@ -64,24 +64,29 @@ model Festival {
   startDate   DateTime
   endDate     DateTime
   location    String
-  price       Float
-  capacity    Int
+  venue       String
+  category    String
   imageUrl    String?
+  status      String   @default("draft")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   organizerId String
   organizer   User     @relation("FestivalOrganizer", fields: [organizerId], references: [id])
   tickets     Ticket[]
+  features    String[]
 }
 
 model Ticket {
-  id         String   @id @default(cuid())
-  type       String
-  price      Float
-  quantity   Int
+  id           String   @id @default(cuid())
+  type         String
+  description  String
+  price        Float
+  quantity     Int
+  soldCount    Int      @default(0)
   purchaseDate DateTime @default(now())
-  festivalId String
-  userId     String
-  festival   Festival @relation(fields: [festivalId], references: [id])
-  user       User     @relation(fields: [userId], references: [id])
+  festivalId   String
+  userId       String
+  status       String   @default("valid")
+  festival     Festival @relation(fields: [festivalId], references: [id])
+  user         User     @relation(fields: [userId], references: [id])
 }
