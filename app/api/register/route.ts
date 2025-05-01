@@ -2,10 +2,22 @@
 import { NextResponse } from "next/server"
 import bcrypt from "bcryptjs"
 import { prisma } from "@/lib/prisma"
+import { registerSchema } from "@/lib/validation"
 
 export async function POST(req: Request) {
   try {
-    const { name, email, password } = await req.json()
+    const body = await req.json()
+    
+    // Validate input
+    const result = registerSchema.safeParse(body)
+    if (!result.success) {
+      return NextResponse.json(
+        { error: result.error.errors[0].message },
+        { status: 400 }
+      )
+    }
+
+    const { name, email, password } = result.data
     
     const exists = await prisma.user.findUnique({
       where: { email }
@@ -33,8 +45,9 @@ export async function POST(req: Request) {
       { status: 201 }
     )
   } catch (error) {
+    console.error('Registration error:', error)
     return NextResponse.json(
-      { error: "Error creating user" },
+      { error: "Internal server error" },
       { status: 500 }
     )
   }
