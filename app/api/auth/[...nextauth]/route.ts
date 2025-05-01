@@ -1,13 +1,23 @@
+
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import GithubProvider from "next-auth/providers/github"
+import GoogleProvider from "next-auth/providers/google"
+import FacebookProvider from "next-auth/providers/facebook"
 import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 
 const handler = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID || "",
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "",
+    }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -39,10 +49,6 @@ const handler = NextAuth({
           name: user.name,
         }
       }
-    }),
-    GithubProvider({
-      clientId: process.env.GITHUB_ID || "",
-      clientSecret: process.env.GITHUB_SECRET || "",
     }),
   ],
   session: {
